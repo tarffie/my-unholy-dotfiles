@@ -71,13 +71,18 @@ ZSH_THEME="gentoo"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  emoji
   git
   emacs
-  
+  dotenv
+  npm
+  nvm
+  tmux
 )
 
 source $ZSH/oh-my-zsh.sh
 alias vim=nvim
+alias slave='cd /mnt/slave/'
 
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
@@ -110,3 +115,13 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+
+# Created by `pipx` on 2024-02-29 02:39:05
+export PATH="$PATH:/home/yoru/.local/bin"
+
+# bun completions
+[ -s "/home/yoru/.bun/_bun" ] && source "/home/yoru/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
