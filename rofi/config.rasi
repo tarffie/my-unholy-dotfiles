@@ -1,0 +1,10 @@
+configuration{
+    modi: "run";
+    terminal: "kitty";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    display-run: " run ";
+}
+
+@theme "/usr/share/rofi/themes/DarkBlue.rasi"
