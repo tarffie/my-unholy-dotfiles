@@ -1,5 +1,17 @@
-#TITLE: 08/12/2023 - quick stuff to just throw around and have it ready so I won't have to just, like, you know, have to set up everytime everything manually
-I've been hopping around using others people computers and it really is annoying to reinstall everything, everytime. 
+# Dotfiles for my current setup
+## Requirements
+- Caskaydia Cove (Cascadia Code Nerd Font)
+- xorg
+- i3 (contemplating change it to awm or dwm)
+- Picom
+- Emacs (If you want to use my emacs config)
+- Alacritty
+- Rofi
+- Polybar
 
-:peace, out: 
+## Installation
+I might add an installscript later if there is enough demand, but for now,
+you have to copy the config files to their corresponding locations.
+
+#![preview](to be added inside github browser lmao)
 
