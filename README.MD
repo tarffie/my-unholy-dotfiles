@@ -4,7 +4,7 @@
 - xorg
 - i3 (contemplating change it to awm or dwm)
 - Picom
-- Emacs (If you want to use my emacs config)
+- Emacs (If you want to use my emacs config, those can be found <a href="https://github.com/tarffie/dot-emacs"> here! </a>) 
 - Alacritty
 - Rofi
 - Polybar
