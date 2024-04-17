@@ -208,9 +208,12 @@ bindsym --release $mod+Print exec gnome-screenshot -a
 
 for_window [class="firefox"] move to workspace $ws1
 for_window [class="Chromium"] move to workspace $ws1
-for_window [class="Alacritty"] move to workspace $ws2
+for_window [class="kitty"] move to workspace $ws2
 for_window [class="Emacs"] move to workspace $ws2
-for_window [class="telegram"] move to workspace $ws6
+for_window [class="org.gnome.Nautilus"] move to workspace $ws3
+for_window [class="steam"] move to workspace $ws4
+for_window [class="vlc"] move to workspace $ws5
+for_window [class="TelegramDesktop"] move to workspace $ws6
 for_window [class="discord"] move to workspace $ws6
 
 exec_always [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
@@ -225,3 +228,9 @@ client.placeholder      #1e1e2e #1e1e2e #D8DEE9 #1e1e2e   #1e1e2e
 client.background       #1e1e2e
 
 gaps inner 15
+
+exec xset s off
+exec xset -dpms
+
+
+
