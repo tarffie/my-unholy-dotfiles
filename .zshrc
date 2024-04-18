@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="gentoo"
+ZSH_THEME="suvash"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -77,12 +77,13 @@ plugins=(
   dotenv
   npm
   nvm
-  tmux
 )
 
 source $ZSH/oh-my-zsh.sh
 alias vim=nvim
 alias slave='cd /mnt/slave/'
+alias neofetch=hyfetch
+alias clear=clear-scrollback
 
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
@@ -125,3 +126,7 @@ export PATH="$PATH:/home/yoru/.local/bin"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
