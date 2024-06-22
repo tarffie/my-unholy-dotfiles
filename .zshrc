@@ -78,13 +78,11 @@ plugins=(
   npm
   nvm
 )
-
 source $ZSH/oh-my-zsh.sh
 alias vim=nvim
-alias slave='cd /mnt/slave/'
 alias neofetch=hyfetch
-alias clear=clear-scrollback
-
+alias poweroff="sudo poweroff"
+alias reboot="sudo reboot"
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else 
@@ -120,12 +118,6 @@ fi
 # Created by `pipx` on 2024-02-29 02:39:05
 export PATH="$PATH:/home/yoru/.local/bin"
 
-# bun completions
-[ -s "/home/yoru/.bun/_bun" ] && source "/home/yoru/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
