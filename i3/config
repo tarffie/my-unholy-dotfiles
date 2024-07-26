@@ -9,13 +9,13 @@ exec xset r rate 140 40
 exec xset s off
 exec xset -dpms
 exec xmodmap ~/.Xmodmap
-exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper-*
-exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec_always --no-startup-id python3 ~/.config/polybar/i3-autoname-workspaces.py
+exec_always --no-startup-id feh --bg-scale ~/Pictures/lain_bw.jpeg 
+#exec_always --no-startup-id ~/.config/polybar/launch.sh
+#exec_always --no-startup-id python3 ~/.config/polybar/i3-autoname-workspaces.py
 #exec_always --no-startup-id ~/.config/polybar/launch_primary_display.sh
-exec_always --no-startup-id ~/.config/polybar/launch_multi_display.sh
-exec_always --no-startup-id nm-applet
-exec_always --no-startup-id picom
+#exec_always --no-startup-id ~/.config/polybar/launch_multi_display.sh
+#exec_always --no-startup-id nm-applet
+#exec_always --no-startup-id picom
 
 
 #Font for window titles.
