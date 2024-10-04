@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="avit"
+ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -109,6 +109,14 @@ source $ZSH/oh-my-zsh.sh
 #alias update="sudo pacman -Syu && yay -Syu"
 #alias remove="sudo pacman -Rs"
 
+
+# aliases for pacman 
+alias look="emerge -S" 
+alias fetch="sudo emerge -av1"
+alias update="sudo emerge --ask --verbose --deep --newuse @world"
+alias remove-check="emerge -vp --depclean"
+alias remove="sudo emerge --unmerge"
+
 # aliases for gitting >:D 
 alias gi="git init"
 alias gs="git status"
@@ -122,12 +130,12 @@ alias gd="git diff "
 # alias for other software 
 
 # Created by `pipx` on 2024-07-08 13:47:10
-export PATH="$PATH:/home/maria/.local/bin"
+export PATH="$PATH:/home/tarffie/.local/bin"
 
-[ -f "/home/maria/.ghcup/env" ] && . "/home/maria/.ghcup/env" # ghcup-env
+#[ -f "/home/maria/.ghcup/env" ] && . "/home/maria/.ghcup/env" # ghcup-env
 
 # pnpm
-export PNPM_HOME="/home/yoru/.local/share/pnpm"
+export PNPM_HOME="/home/tarffie/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;

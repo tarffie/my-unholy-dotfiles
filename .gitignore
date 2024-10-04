@@ -2,3 +2,5 @@ autoload/
 melpa/
 elpa/
 smex-items
+*~
+*.*#
