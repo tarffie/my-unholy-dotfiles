@@ -1,5 +1,4 @@
 #!/bin/bash
-~/init.sh & 
-exec dwm
+exec i3
 
 

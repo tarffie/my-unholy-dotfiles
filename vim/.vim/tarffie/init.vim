@@ -27,5 +27,5 @@ let base16_colorspace=256 " Access colors present in 256 colorspace
 let base16_background_transparent=1
 
 set background=dark
-colorscheme base16-uwunicorn
-"colorscheme base16-emil
+"colorscheme base16-uwunicorn
+colorscheme base16-emil

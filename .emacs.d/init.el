@@ -9,7 +9,6 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (show-paren-mode 1)
-(column-number-mode 1)
 (add-to-list 'default-frame-alist '(alpha-background . 75))
 (load "~/.emacs.d/.emacs.rc/rc.el")
 (add-to-list 'load-path "~/.emacs.d/.emacs.local/")
