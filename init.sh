@@ -1,6 +1,2 @@
-#!/bin/bash
-WALLPAPER="/mnt/slave/backgrounds/wallpaperflare.com_wallpaper.jpg"
-KEYMODS="/home/yoru/.Xmodmap"
-
-feh --bg-fill $WALLPAPER && xmodmap $KEYMODS
-
+mkdir home/$USER/{/.emacs.d,/.emacs.rc,/notes,}
+mkdir home/$USER/.emacs.d{/.emacs.local,/saves}
