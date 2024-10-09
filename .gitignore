@@ -4,3 +4,10 @@ elpa/
 smex-items
 *~
 *.*#
+auto-save-list/
+eclipse.jdt.ls/
+ido.last
+saves/
+smex-items/
+tree-sitter/
+workspace/
