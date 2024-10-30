@@ -1,17 +1,16 @@
 # Dotfiles for my current setup
 ## Requirements
-- Caskaydia Cove (Cascadia Code Nerd Font)
+- Caskaydia Cove (Cascadia Code Nerd Font) and Hack Nerd 
 - xorg
-- i3 (contemplating change it to awm or dwm)
+- i3 
 - Picom
-- Emacs (If you want to use my emacs config, those can be found <a href="https://github.com/tarffie/dot-emacs"> here! </a>) 
-- Alacritty
+- Emacs
+- Kitty
 - Rofi
 - Polybar
 
 ## Installation
-I might add an installscript later if there is enough demand, but for now,
-you have to copy the config files to their corresponding locations.
+that's a TODO right there
 
 ![preview](https://github.com/tarffie/my-unholy-dotfiles/blob/master/preview.png?raw=true)
 
