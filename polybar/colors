@@ -2,9 +2,13 @@
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
 [color]
-
-background = ${xrdb:background}
-foreground = #DFDFDF
+background = #001e1e2e
+background-alt = #181825
+foreground = #9399b2
+primary = #cdd6f4
+secondary = #e78a4e
+alert = #e78a4e
+disabled = #707880
 
 black = ${xrdb:background}
 white = ${xrdb:foreground}

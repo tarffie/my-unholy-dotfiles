@@ -10,36 +10,36 @@
 
 [module/launcher]
 type = custom/text
-content = 
+content = 
 
 content-background = ${color.black}
 content-foreground = ${color.blue}
 content-padding = 1
 content-font = 4
 
-;click-left = rofi -monitor -1 -show drun -location 1 -columns 2 -yoffset 27 -lines 20 -width 30 -font "Hack Nerd Font Regular 14"
+click-left = rofi -monitor -1 -show drun -location 1 -columns 2 -yoffset 27 -lines 20 -width 30 -font "Hack Nerd Font Regular 14"
 
 ;;==========================================================
 
 ;[module/title]
 ;type = internal/xwindow
-
+;
 ;format = <label>
 ;format-background = ${color.green}
 ;format-foreground = ${color.black}
 ;format-padding = 1
 ;format-font = 2
-
+;
 ;label = %title%
 ;label-maxlen = 40
-
-;;label-empty = Arch Linux
+;
+;label-empty = Gentoo Linux
 
 ;;==========================================================
 
 [module/title]
 type = custom/script
-exec = ~/dotfiles/scripts/xwindowname.sh
+exec = ~/programming/tarffie/scripts/xwindowname.sh
 interval = 0.4
 format-maxlen = 40
 format-background = ${color.green}
@@ -98,10 +98,10 @@ label-urgent-padding = 1
 label-urgent-font = 2
 
 ; Separator in between workspaces
-;label-separator = 
-;label-separator-foreground = ${color.white}
-;label-separator-padding = 0
-;ws-icon-0 = 0;
+label-separator = 
+label-separator-foreground = ${color.white}
+label-separator-padding = 0
+;ws-icon-0 = 0
 ;ws-icon-1 = 1;
 ;ws-icon-2 = 2;
 ;ws-icon-3 = 3;
@@ -111,11 +111,32 @@ label-urgent-font = 2
 
 ;;==========================================================
 
+[module/xworkspaces]
+type = internal/xworkspaces
+
+label-active = %name%
+label-active-background = ${colors.background-alt}
+label-active-underline= ${colors.primary}
+label-active-padding = 1
+
+label-occupied = %name%
+label-occupied-padding = 1
+
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+label-empty = %name%
+label-empty-foreground = ${colors.disabled}
+label-empty-padding = 1
+
+;;==========================================================
+
 [module/pulseaudio]
 type = internal/pulseaudio
 
 format-volume = "%{A3:pavucontrol&:}<label-volume> <bar-volume> %{A}"
-label-volume = "  %percentage%%"
+label-volume = "   %percentage%%"
 label-volume-foreground = ${color.white}
 label-volume-background = ${color.black}
 label-volume-font = 2
@@ -149,8 +170,8 @@ bar-volume-empty-foreground = ${color.white}
 type = internal/date
 interval = 1.0
 
-time = " %Y-%m-%d %H:%M"
-time-alt =  %H:%M
+time = " %Y-%m-%d %H:%M"
+time-alt =  %H:%M
 
 format = <label>
 format-background = ${color.white}
@@ -213,7 +234,7 @@ interval = 30
 
 mount-0 = /
 
-label-mounted = "  %percentage_used%% "
+label-mounted = "  %percentage_used%% "
 label-mounted-background = ${color.black}
 label-mounted-foreground = ${color.white}
 label-mounted-font = 2
@@ -227,11 +248,9 @@ label-unmounted-font = 2
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-prefix-font = 2
-format-prefix-foreground = ${color.black}
-format-prefix-background = ${color.yellow}
-label = %percentage_used%%
+
+
+label = " 󰍛 %used%|%free% /%total% "
 label-background = ${color.yellow}
 label-foreground = ${color.black}
 label-font = 2
@@ -247,7 +266,7 @@ format = <ramp><label>
 format-warn = <ramp><label-warn>
 format-font = 2
 
-label = "%temperature-c% "
+label = " %temperature-c% "
 label-background = ${color.grey}
 label-foreground = ${color.white}
 label-warn = %temperature-f%
