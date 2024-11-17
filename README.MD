@@ -8,8 +8,11 @@
 - Kitty
 - Rofi
 - Polybar
+- St 
+- Tmux
+- fzf
 
-## Installation
+# Installation
 that's a TODO right there
 
 ![preview](https://github.com/tarffie/my-unholy-dotfiles/blob/master/preview.png?raw=true)

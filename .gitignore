@@ -11,3 +11,16 @@ saves/
 smex-items/
 tree-sitter/
 workspace/
+.cache
+tramp
+.dap-*
+.local/
+eshell/
+emacs/.emacs.d/recentf
+
+emacs/.emacs.d/request/
+emacs/.emacs.d/projects
+emacs/.emacs.d/projectile-bookmarks.eld
+emacs/.emacs.d/network-security.data
+emacs/.emacs.d/.lsp-session-v1
+
