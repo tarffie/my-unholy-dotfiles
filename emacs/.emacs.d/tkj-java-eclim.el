@@ -10,13 +10,12 @@
 (defun my-java-mode-hook ()
   (auto-fill-mode)
   (gtags-mode)
-  ;;  (flyspell-prog-mode) ;; grabs C-; :(
-  ;;  (flymake-mode)
+  (flyspell-prog-mode) ;; grabs C-; :(
+  (flymake-mode)
   (eclim-mode)
   (subword-mode)
   (yas-minor-mode)
   (idle-highlight-mode)
-  (git-gutter+-mode)
 
   ;; Only include eclim candidates in the completion menu, must be run
   ;; after eclim-mode above.
@@ -92,7 +91,7 @@
 
 ;; Variables
 (setq eclim-auto-save t
-      eclim-executable "/opt/eclipse/eclim"
+      eclim-executable "~/eclipse/eclim"
       eclimd-wait-for-process nil
       eclimd-default-workspace "~/src/workspace-eclim"
       eclim-use-yasnippet nil

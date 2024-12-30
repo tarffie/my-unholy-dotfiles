@@ -1,4 +1,9 @@
-;; Yoru emacs configuration for everything related to files and backups
+;;; Tarffie-files ---  Tarffie emacs configuration for everything related to files and backups
+;;; Commentary:
+;;; easy way to organize my file prefferences and what loads what
+
+;;; Code:
+
 ;; backups were disabled before, but felt the sudden (/s) urge to change it back
 (setq backup-directory-alist `(("." . "~/.emacs.d/saves")))
 
@@ -33,7 +38,7 @@
 
 ;; Try to be smart about which target directory to use for dired
 ;; operations (cp, mv)
-(setq dired-dwim-target t)
+(setq-default dired-dwim-target t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -111,6 +116,11 @@
          ("github.*\\.txt$" . markdown-mode)
          ("pom.xml" . nxml-mode)
          ("tkj-p4-diff-buffer" . diff-mode)
+         ("*.ml" . tuareg-mode)
+         ("*.ts*" . typescript-ts-mode)
+         ("*.js*" . javascript-mode)
          )))
 
 
+(provide 'tarffie-files)
+;;; tarffie-files.el ends here

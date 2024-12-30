@@ -13,7 +13,6 @@
   (diminish 'compilation-minor-mode)
   (diminish 'eclim-mode)
   (diminish 'flyspell-mode)
-  (diminish 'git-gutter+-mode)
   (diminish 'slack-mode)
   (diminish 'slack-message-buffer-mode)
   (diminish 'slack-thread-mode)
