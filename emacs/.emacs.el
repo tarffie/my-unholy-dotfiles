@@ -43,9 +43,13 @@
 ;;;;;;;;;;;;;;;;;
 ;;  apparence  ;;
 ;;;;;;;;;;;;;;;;;
-(rc/require-theme 'catppuccin)
-(setq-default catppuccin-flavor 'macchiato) ; or 'latte, 'macchiato, or 'mocha
-(load-theme 'catppuccin t)
+(rc/require 'doom-themes)
+(load-theme 'doom-challenger-deep t)
+
+;;; I might feel nostalgic later.
+;;(rc/require-theme 'catppuccin)
+;;(setq-default catppuccin-flavor 'macchiato) ; or 'latte, 'macchiato, or 'mocha
+
 
 (add-to-list 'custom-theme-load-path "$HOME/.emacs.d/themes")
 
@@ -130,15 +134,37 @@ where as N is the active buffer number, which will be replaced"
 ;;                      ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; I really love emacs copy paste except because it doesn't kill the region before yanking
+(defun paste-like-vim (beg end)
+  "Delete region (from BEG to END) before yanking text to it.
+and replace copy-ring entry, behaving similarly to
+the vi text editor family yank-paste functionality."
+  (interactive "r")
+  (if (use-region-p)
+      (progn
+        (yank)
+        (kill-region beg end))
+        (yank))
+
+  ;; controls just gives the user visual feedback.
+  (if (called-interactively-p 'interactive)
+      (indicate-copied-region)))
+
+(global-set-key (kbd "C-y") 'paste-like-vim)
+
 ;; had that in vim and never learned to live without
 (global-set-key "\C-u" 'scroll-down)
 
 ;; prefer to use
 (prefer-coding-system 'utf-8-unix)
+
+;; I really hate this but I Know why i have it.
+(global-unset-key "\C-t")
 ;; the binding to stop minimizing emacs by accident
 (global-unset-key "\C-z")
-;; i like my auto formating :(
 
+
+;; i like my auto formating :(
 (rc/require 'format-all)
 (use-package format-all
   :preface
@@ -528,10 +554,11 @@ where as N is the active buffer number, which will be replaced"
 (use-package company
   :ensure t
   :config
-  (global-set-key (kbd "<C-y>") 'company-complete)
+  (global-set-key (kbd "<C-return>") 'company-complete)
   (global-company-mode 1))
-(setq company-idle-delay 0.2)
-(setq-default company-prefix-min-length 2)
+
+(setq company-idle-delay 0.75)
+(setq-default company-prefix-min-length 3)
 
 ;; Get auto completion of :emoji: names.
 (use-package company-emoji
