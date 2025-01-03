@@ -172,7 +172,7 @@ the vi text editor family yank-paste functionality."
         (prolog-indent-buffer)
       (format-all-buffer)))
   :config
-  (add-hook 'prog-mode-hook #'format-all-ensure-formatter)
+  (add-hook 'format-all #'format-all-ensure-formatter)
   :commands
   (format-all-ensure-formatter))
 (global-set-key (kbd "C-x f") #'tarffie/format-code)
@@ -518,9 +518,21 @@ the vi text editor family yank-paste functionality."
 (add-hook 'ediff-after-quit-hook-internal 'winner-undo)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; org-mode
+;; org-mode && notes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (load "~/.emacs.d/custom-org.el") ;; TODO
+
+(defun open-notes ()
+  "Interactive function to launch my personal notes.org file."
+  (interactive)
+  (defconst file-path "~/notes/notes.org")
+  (if (file-exists-p file-path)
+      (find-file-at-point file-path)
+    (if (not #'directory-empty-p)
+        (mkdir "~/notes/"))
+    (find-file file-path)
+    (save-buffer)))
+(global-set-key (kbd "C-x D") #'open-notes)
 
 ;;Allow interactive narrow-to-region
 (put 'narrow-to-region 'disabled nil)
