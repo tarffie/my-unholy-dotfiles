@@ -136,7 +136,7 @@ where as N is the active buffer number, which will be replaced"
 
 ;; I really love emacs copy paste except because it doesn't kill the region before yanking
 (defun paste-like-vim (beg end)
-  "Delete region (from BEG to END) before yanking text to it.
+  "Receives region (as BEG and END), yank text to it and `'kill-region'`.
 and replace copy-ring entry, behaving similarly to
 the vi text editor family yank-paste functionality."
   (interactive "r")
@@ -144,13 +144,10 @@ the vi text editor family yank-paste functionality."
       (progn
         (yank)
         (kill-region beg end))
-        (yank))
-
-  ;; controls just gives the user visual feedback.
-  (if (called-interactively-p 'interactive)
-      (indicate-copied-region)))
-
+    (yank)))
 (global-set-key (kbd "C-y") 'paste-like-vim)
+
+(global-set-key (kbd "M-d") 'backward-delete-char-untabify)
 
 ;; had that in vim and never learned to live without
 (global-set-key "\C-u" 'scroll-down)
