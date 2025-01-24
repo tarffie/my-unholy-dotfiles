@@ -1,0 +1,74 @@
+virtual/wine USE="staging"
+app-emulation/wine-vanilla	USE="X alsa fontconfig gecko gstreamer mingw mono opengl"
+# required by www-client/firefox-115.15.0::gentoo[system-libvpx]
+# required by firefox (argument)
+>=media-libs/libvpx-1.13.1-r1 postproc
+# required by mail-client/mutt-wizard-3.3.1::gentoo
+# required by mutt-wizard (argument)
+>=mail-client/neomutt-20240201 sasl notmuch
+# required by media-gfx/krita-5.2.3::gentoo
+# required by media-gfx/krita (argument)
+>=dev-libs/quazip-1.4-r1 qt5
+# required by media-gfx/krita-5.2.3::gentoo[python_single_target_python3_12]
+# required by media-gfx/krita (argument)
+# move dev-python/PyQt5 dev-python/pyqt5
+>=dev-python/pyqt5-5.15.11 declarative
+# required by media-gfx/krita-5.2.3::gentoo[pdf]
+# required by media-gfx/krita (argument)
+>=app-text/poppler-24.08.0 qt5
+# required by kde-frameworks/kauth-6.7.0::gentoo[policykit]
+# required by kde-frameworks/kio-6.7.0::gentoo
+# required by kde-frameworks/kcmutils-6.7.0::gentoo
+# required by kde-plasma/libplasma-6.1.5::gentoo
+# required by kde-plasma/polkit-kde-agent-6.1.5::gentoo
+# required by kde-frameworks/kauth-5.116.0::gentoo[policykit]
+# required by kde-frameworks/kconfigwidgets-5.116.0::gentoo
+# required by kde-frameworks/kiconthemes-5.116.0::gentoo
+# required by kde-frameworks/kxmlgui-5.116.0::gentoo
+# required by media-gfx/krita-5.2.3::gentoo
+# required by media-gfx/krita (argument)
+>=kde-frameworks/kwindowsystem-6.7.0 wayland
+# required by kde-frameworks/kauth-5.116.0::gentoo[policykit]
+# required by kde-frameworks/kconfigwidgets-5.116.0::gentoo
+# required by kde-frameworks/kiconthemes-5.116.0::gentoo
+# required by kde-frameworks/kxmlgui-5.116.0::gentoo
+# required by media-gfx/krita-5.2.3::gentoo
+# required by media-gfx/krita (argument)
+>=sys-auth/polkit-qt-0.200.0 qt5
+# required by dev-qt/qtwayland-6.7.3-r1::gentoo
+>=dev-qt/qtbase-6.7.3-r2 wayland
+# required by dev-qt/qtbase-6.7.3-r2::gentoo[gui,gtk,widgets]
+# required by dev-qt/qtsvg-6.7.3::gentoo
+# required by kde-frameworks/kirigami-6.7.0::gentoo
+# required by kde-frameworks/ksvg-6.7.0::gentoo
+# required by kde-plasma/libplasma-6.1.5::gentoo
+# required by kde-plasma/polkit-kde-agent-6.1.5::gentoo
+# required by kde-frameworks/kauth-5.116.0::gentoo[policykit]
+# required by kde-frameworks/kconfigwidgets-5.116.0::gentoo
+# required by kde-frameworks/kiconthemes-5.116.0::gentoo
+# required by kde-frameworks/kxmlgui-5.116.0::gentoo
+# required by media-gfx/krita-5.2.3::gentoo
+# required by media-gfx/krita (argument)
+>=x11-libs/gtk+-3.24.41-r1 wayland
+# required by media-libs/mesa-24.2.6-r2::gentoo[wayland]
+# required by x11-libs/gtk+-3.24.41-r1::gentoo[wayland]
+# required by dev-qt/qtbase-6.7.3-r2::gentoo[gui,gtk,widgets]
+# required by dev-qt/qtsvg-6.7.3::gentoo
+# required by kde-frameworks/kirigami-6.7.0::gentoo
+# required by kde-frameworks/ksvg-6.7.0::gentoo
+# required by kde-plasma/libplasma-6.1.5::gentoo
+# required by kde-plasma/polkit-kde-agent-6.1.5::gentoo
+# required by kde-frameworks/kauth-5.116.0::gentoo[policykit]
+# required by kde-frameworks/kconfigwidgets-5.116.0::gentoo
+# required by kde-frameworks/kiconthemes-5.116.0::gentoo
+# required by kde-frameworks/kxmlgui-5.116.0::gentoo
+# required by media-gfx/krita-5.2.3::gentoo
+# required by media-gfx/krita (argument)
+>=dev-libs/wayland-1.23.1 abi_x86_32
+# required by kde-frameworks/kwindowsystem-6.7.0::gentoo
+# required by kde-plasma/kglobalacceld-6.1.5::gentoo
+# required by kde-frameworks/kglobalaccel-5.116.0-r1::gentoo[kf6compat]
+# required by kde-frameworks/kxmlgui-5.116.0::gentoo
+# required by media-gfx/krita-5.2.3::gentoo
+# required by media-gfx/krita (argument)
+=dev-qt/qtbase-6.7.2-r5 wayland

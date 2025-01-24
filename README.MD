@@ -5,7 +5,6 @@
 - i3 
 - Picom
 - Emacs
-- Kitty
 - Rofi
 - Polybar
 - St 
