@@ -1,4 +1,4 @@
-#! /bin/zsh
+#!/bin/sh
 
 ## "forked" from https://github.com/skinner12/dotfiles-1/blob/master/scripts/xwindowname.sh
 

@@ -84,11 +84,6 @@ OMB_USE_SUDO=true
 # Example format: completions=(ssh git bundler gem pip pip3)
 # Add wisely, as too many completions slow down shell startup.
 completions=(
-  maven 
-  npm 
-  nvm
-  docker 
-  docker-compose
 )
 
 # Which aliases would you like to load? (aliases can be found in ~/.oh-my-bash/aliases/*)
@@ -173,19 +168,27 @@ esac
 ###########
 #
 #
+# aliases for portage
+alias look="emerge -S" 
+alias fetch="sudo emerge -av1"
+alias update="sudo emerge --ask --verbose --deep --newuse @world"
+alias remove-check="emerge -vp --depclean"
+alias remove="sudo emerge --unmerge"
+
 
 if [ $UID -ne 0 ]; then
   alias reboot="sudo reboot"
   alias down="sudo poweroff"
-  alias look="emerge -S"
+  alias look="emerge -S" 
   alias fetch="sudo emerge -av1"
   alias update="sudo emerge --ask --verbose --deep --newuse @world"
   alias remove-check="emerge -vp --depclean"
   alias remove="sudo emerge --unmerge"
-  alias sync="sudo emerge --sync"
+  
   #
-  # aliases for gitting >:D
+  # aliases for gitting >:D 
   #
+  
   alias gi="git init"
   alias gs="git status"
   alias gf="git fetch"
@@ -193,9 +196,8 @@ if [ $UID -ne 0 ]; then
   alias gpp="git pull"
   alias gp="git push"
   alias gc="git commit -m"
-  alias gd="git diff"
-  alias gcl="git clone"
-  alias pa="php artisan"
+  alias gd="git diff "
+  alias gcl="git clone "
 fi
 
 ## change cat for Better cat ;) ##
@@ -203,16 +205,16 @@ alias cat='bat'
 
 ## Colorize the ls output ##
 alias ls='ls --color=auto'
-
+ 
 ## Use a long listing format ##
 alias ll='ls -la'
-
+ 
 ## Show hidden files ##
 alias l.='ls -d .* --color=auto'
 
 ## get rid of command not found ##
 alias cd..='cd ..'
-
+ 
 ## a quick way to get out of current directory ##
 alias ..='cd ..'
 alias ...='cd ../../../'
@@ -237,10 +239,3 @@ fi
 #
 eval "$(fzf --bash)"
 
-export PATH="/home/tarffie/.config/herd-lite/bin:$PATH"
-export PHP_INI_SCAN_DIR="/home/tarffie/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
-alias run='docker compose up'
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
