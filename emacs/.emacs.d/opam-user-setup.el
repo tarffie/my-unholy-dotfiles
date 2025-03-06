@@ -4,8 +4,8 @@
 ;; Base configuration for OPAM
 
 (defun opam-shell-command-to-string (command)
-  "Similar to shell-command-to-string, but returns nil unless the process
-  returned 0, and ignores stderr (shell-command-to-string ignores return value)"
+  "Similar to shell-command-to-string, but COMMAND returns nil unless the process.
+  returned 0, and ignores stderr (shell-command-to-string ignores return value)."
   (let* ((return-value 0)
          (return-string
           (with-output-to-string

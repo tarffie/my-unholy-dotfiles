@@ -1,14 +1,18 @@
-;; tarffie was here
-(rc/require 'tuareg)
-(setq tuareg-match-pattern-aligned t)
-
+;;; Ocaml.el -- ocaml settings and configs
+;;; Commentary:
 ;; Basic .emacs with a good set of defaults, to be used as template for usage
 ;; with OCaml and OPAM
 ;;
 ;; Author: Louis Gesbert <louis.gesbert@ocamlpro.com>
+;; Author: tarffie <enbrakaffe@gmai.com>
 ;; Released under CC0
 
 ;; Generic, recommended configuration options
+
+;;; Code:
+
+(require 'tuareg)
+(setq-default tuareg-match-pattern-aligned t)
 
 (custom-set-variables
  '(indent-tabs-mode nil)
@@ -20,12 +24,12 @@
  '(next-line-add-newlines nil)
  '(require-final-newline t)
  '(sentence-end-double-space nil)
- '(show-trailing-whitespace t)
  '(visible-bell t)
+ '(show-trailing-whitespace nil)
  '(next-error-highlight t)
  '(next-error-highlight-no-select t)
  '(ac-use-fuzzy nil)
- '(line-move-visual t)
+ '(line-move-visual nil)
  )
 
 ;; ANSI color in compilation buffer
@@ -56,3 +60,4 @@
 ;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
 (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
 ;; ## end of OPAM user-setup addition for emacs / base ## keep this line
+;;; ocaml.el ends here

@@ -1,23 +1,21 @@
 ;;; java.el --- java files handling
 ;;; Commentary:
 ;;; Code:
-(rc/require 'projectile)
-(rc/require 'hydra)
-(rc/require 'lsp-java)
 (rc/require 'java-ts-mode)
-(add-hook 'java-mode-hook #'lsp)
-;; use packages
-(use-package projectile)
-(use-package flycheck)
-;; lsp-mode setup
-(use-package lsp-mode :hook ((lsp-mode))
-  :config (setq-default lsp-completion-enable-additional-text-edit nil))
+(add-hook 'java-ts-mode-hook 'eglot-java-mode)
+(add-hook 'java-mode-hook 'eglot-java-mode)
 
-(use-package hydra)
-(use-package lsp-java :config (add-hook 'java-mode-hook 'java-ts-mode-hook 'lsp))
-(use-package dap-mode :after lsp-mode :config (dap-auto-configure-mode))
-(use-package dap-java :ensure nil)
-(use-package lsp-treemacs)
+
+(rc/require 'eglot-java)
+(define-key eglot-java-mode-map (kbd "C-c l n") #'eglot-java-file-new)
+(define-key eglot-java-mode-map (kbd "C-c l x") #'eglot-java-run-main)
+(define-key eglot-java-mode-map (kbd "C-c l t") #'eglot-java-run-test)
+(define-key eglot-java-mode-map (kbd "C-c l N") #'eglot-java-project-new)
+(define-key eglot-java-mode-map (kbd "C-c l T") #'eglot-java-project-build-task)
+(define-key eglot-java-mode-map (kbd "C-c l R") #'eglot-java-project-build-refresh)
+
+(add-hook 'java-mode-hook #'eglot)
+(add-hook 'java-ts-mode-hook #'eglot)
 
 (provide 'java)
 ;;; java.el ends here

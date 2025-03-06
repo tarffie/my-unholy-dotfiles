@@ -17,7 +17,6 @@
 
 (require 'doom-themes)
 
-
 ;;
 ;;; Variables
 
@@ -41,12 +40,11 @@ Can be an integer to determine the exact padding."
   :group 'doom-moonfly-theme
   :type '(choice integer boolean))
 
-
 ;;
 ;;; Theme definition
 
 (def-doom-theme doom-moonfly
-  "A dark theme inspired by vim-moonfly."
+		"A dark theme inspired by vim-moonfly."
 
   ;; name        default   256           16
   ((bg         '("#080808" "black"       "black"  ))

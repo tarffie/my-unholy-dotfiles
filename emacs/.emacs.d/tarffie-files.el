@@ -117,8 +117,12 @@
          ("pom.xml" . nxml-mode)
          ("tkj-p4-diff-buffer" . diff-mode)
          ("*.ml" . tuareg-mode)
-         ("*.ts*" . typescript-ts-mode)
-         ("*.js*" . javascript-mode)
+         ("*.*sx" . tsx-ts-mode)
+         ("*.ts" . typescript-ts-mode)
+         ("*.js" . javascript-mode)
+         ("*.java" . java-mode)
+         ("*.scm" . scheme-mode)
+         ("*.ss" . scheme-mode)
          )))
 
 
