@@ -14,5 +14,5 @@
 # Installation
 that's a TODO right there
 
-![preview](https://github.com/tarffie/my-unholy-dotfiles/blob/master/preview.png?raw=true)
+![preview](https://i.imgur.com/twRTgnr.png?raw=true)
 
