@@ -9,20 +9,20 @@ set $gray #a89984
 set $darkgray #1d2021
 set $lightgray #bdae93
 
-bar {
-    colors {
-        # bar background color
-        background $bg
-        # text color used for blocks that do not have a color specified.
-        statusline $lightgray
-        # workspaces section            
-        #                    border  backgr. text
-        focused_workspace    $lightgray $lightgray $bg
-        inactive_workspace   $darkgray $darkgray $lightgray
-        active_workspace     $darkgray $darkgray $lightgray
-        urgent_workspace     $red $red $bg
-    }
-}
+#bar {
+#    colors {
+#        # bar background color
+#        background $bg
+#        # text color used for blocks that do not have a color specified.
+#        statusline $lightgray
+#        # workspaces section            
+#        #                    border  backgr. text
+#        focused_workspace    $lightgray $lightgray $bg
+#        inactive_workspace   $darkgray $darkgray $lightgray
+#        active_workspace     $darkgray $darkgray $lightgray
+#        urgent_workspace     $red $red $bg
+#    }
+#}
 
 # class                 border|backgr|text|indicator|child_border
 client.focused          $lightgray $lightgray $bg $purple $darkgray

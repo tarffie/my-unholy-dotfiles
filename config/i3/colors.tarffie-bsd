@@ -1,0 +1,8 @@
+# class                 border  | backgr. | text    | indicator | child_border
+client.focused          #6c7086   #C74A46   #E5E1D7  #616161     #616161
+client.focused_inactive #5f5faf   #b4befe   #E5E1D7  #616161     #616161
+client.unfocused        #6c7086   #5f676a   #E5E1D7  #616161     #616161
+client.urgent           #f9e2af   #FF4747   #E5E1D7  #f9e2af     #f9e2af
+client.placeholder      #181825   #181825   #E5E1D7  #181825     #181825
+
+client.background       #cdd6f4
