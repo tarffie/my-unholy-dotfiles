@@ -28,7 +28,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; loading my custom files ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(load "~/.emacs.rc/rc.el")
+(load "~/.emacs.d/.emacs.rc/rc.el")
 
 ;; reading and writing files, also backups
 (load "~/.emacs.d/tarffie-files.el")
@@ -58,7 +58,7 @@
 ;;(rc/require-theme 'catppuccin)
 
 (set-face-attribute 'default nil
-                    :family "CaskaydiaCove Nerd Font"
+                    :family "CaskaydiaCove Nerd Font Mono"
                     :height 180
                     :weight 'normal
                     :width 'normal)
@@ -82,8 +82,8 @@
 
 ;; Make frames transparent
 
-(set-frame-parameter (selected-frame) 'alpha-background 55)
-(add-to-list 'default-frame-alist '(alpha-background . 55))
+(set-frame-parameter (selected-frame) 'alpha-background 85)
+(add-to-list 'default-frame-alist '(alpha-background .  85))
 (set-frame-parameter (selected-frame) 'fullscreen 'maximized)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
@@ -154,12 +154,16 @@ where as N is the active buffer number, which will be replaced"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                      ;;
-;;     text editing     ;;
+;;  text/code editing   ;;
 ;;                      ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; prefer to use
 (prefer-coding-system 'utf-8-unix)
+
+;; Undo tree!
+(rc/require 'undo-tree)
+(add-hook 'prog-mode-hook #'undo-tree-mode)
 
 ;; I really love emacs copy paste except because it doesn't kill the region before yanking
 (defun paste-like-vim (beg end)
@@ -175,6 +179,9 @@ the vi text editor family yank-paste functionality."
         (kill-region beg end))
     (yank)))
 
+
+;; whitespaces!
+(add-hook 'python-mode-hook #'whitespace-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; custom bindings ;;
@@ -197,8 +204,6 @@ the vi text editor family yank-paste functionality."
 
 
 
-
-
 ;; i like my auto formating :(
 (rc/require 'format-all)
 (use-package format-all
@@ -209,7 +214,7 @@ the vi text editor family yank-paste functionality."
     (format-all-ensure-formatter)
     (cond
      ((or (derived-mode-p 'java-mode) (derived-mode-p 'java-ts-mode))
-      (eglot-format-buffer))
+      (1eglot-format-buffer))
      ((derived-mode-p 'prolog-mode)
       (prolog-indent-buffer))
      (t
@@ -323,22 +328,6 @@ the vi text editor family yank-paste functionality."
               (auto-fill-mode 1)))
 (setq-default longlines-show-hard-newlines t)
 
-(defun tkj-insert-left-arrow()
-  "Insert an arrow to the left."
-  (interactive)
-  (insert "←"))
-(defun tkj-insert-right-arrow()
-  "Insert an arrow to the right."
-  (interactive)
-  (insert "→"))
-(defun tkj-insert-up-arrow()
-  "Insert an up arrow."
-  (interactive)
-  (insert "↑"))
-(defun tkj-insert-down-arrow()
-  "Insert a down arrow."
-  (interactive)
-  (insert "↓"))
 
 (global-set-key "\C-x\C-c" 'compile) ;; imenu
 (global-set-key (kbd "<C-S-f10>") 'recompile)
@@ -576,7 +565,7 @@ the vi text editor family yank-paste functionality."
     (save-buffer)))
 (global-set-key (kbd "C-x D") #'open-notes)
 
-(defun open-youtube-description ()
+(defun open-yt-description ()
   "Interactive function to launch my youtube-description file while live-streaming."
   (interactive)
   (defconst file-path "~/notes/videos/description.org")
@@ -586,9 +575,7 @@ the vi text editor family yank-paste functionality."
         (mkdir --parents "~/notes/videos"))
     (find-file file-path)
     (save-buffer)))
-(global-set-key (kbd "C-x C-y D") #'open-youtube-description)
-
-
+(global-set-key (kbd "C-x y d") #'open-yt-description)
 
 ;;Allow interactive narrow-to-region
 (put 'narrow-to-region 'disabled nil)
@@ -605,11 +592,14 @@ the vi text editor family yank-paste functionality."
 
 (global-set-key (kbd "C-t") 'treemacs)
 
+(global-set-key (kbd "C-x R") #'lsp-rename)
+
 (rc/require 'helm-lsp)
 (use-package helm-lsp :commands helm-lsp-workspace-symbol)
 
 (rc/require 'tree-sitter)
 (rc/require 'tree-sitter-langs)
+(rc/require 'treesit-auto)
 
 ;;;;;;;;;;;;;
 ;; company ;;
@@ -698,7 +688,7 @@ the vi text editor family yank-paste functionality."
 ;; ultra-scroll
 ;;
 (use-package ultra-scroll
-  :load-path "~/opt/ultra-scroll/"
+  :vc (:url "https://github.com/jdtsmith/ultra-scroll")
   :init
   (setq scroll-conservatively 101 ; important!
         scroll-margin 0)
@@ -711,6 +701,8 @@ the vi text editor family yank-paste functionality."
 (load "~/.emacs.d/tarffie-lisp.el")
 
 (add-hook 'rust-mode-hook 'eglot-ensure)
+(add-hook 'lean4-mode-hook 'smartparens-mode)
+
 
 (add-to-list 'eglot-server-programs
              '((rust-ts-mode rust-mode) .

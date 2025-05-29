@@ -4,7 +4,7 @@
 # Enable the subsequent settings only in interactive sessions
 case $- in
   *i*) ;;
-    *) return;;
+  *) return;;
 esac
 
 
@@ -110,22 +110,22 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# aliases for pacman 
-#alias look="pacman -Ss" 
+# aliases for pacman
+#alias look="pacman -Ss"
 #alias add="sudo pacman -S"
 #alias update="sudo pacman -Syu && yay -Syu"
 #alias remove="sudo pacman -Rs"
 
 # Automatically start TMUX, if it's not set
-# I got that from a dude on a comment section of this video ~> 
+# I got that from a dude on a comment section of this video ~>
 # https://www.youtube.com/watch?v=cPWEX2446B4
 if [[ ! -z ZSH_TMUX_AUTOSTART ]]; then
-    export ZSH_TMUX_AUTOSTART=true
+  export ZSH_TMUX_AUTOSTART=true
 fi
 
 if [[ ! -z ZSH_TMUX_FIXTERM_WITH_256COLOR ]]; then
   ZSH_TMUX_FIXTERM_WITH_256COLOR=true
-fi 
+fi
 
 #
 # Set up fzf key bindings and fuzzy completion
@@ -157,18 +157,17 @@ alias .5='cd ../../../../..'
 
 alias mkdir='mkdir -pv'
 
-alias lf='ranger'
-
 alias reboot="sudo reboot"
 alias poweroff="sudo poweroff"
 
 if [ $UID -ne 0 ]; then
-  alias look="emerge -S"
-  alias fetch="sudo emerge -av1"
-  alias update="sudo emerge --ask --verbose --deep --newuse @world"
-  alias remove-check="emerge -vp --depclean"
-  alias remove="sudo emerge --unmerge"
-  alias sync="sudo emerge --sync"
+  # for more civilized times..miss you, gentoo
+  # alias look="emerge -S"
+  # alias fetch="sudo emerge -av1"
+  # alias update="sudo emerge --ask --verbose --deep --newuse @world"
+  # alias remove-check="emerge -vp --depclean"
+  # alias remove="sudo emerge --unmerge"
+  # alias sync="sudo emerge --sync"
   #
   # aliases for gitting >:D
   #
@@ -183,6 +182,8 @@ if [ $UID -ne 0 ]; then
   alias pa="php artisan"
 
   alias pn="pnpm"
+
+  alias lf="ranger"
 fi
 
 # Created by `pipx` on 2024-07-08 13:47:10
@@ -212,3 +213,13 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+PATH="/home/lain/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/lain/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/lain/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/lain/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/lain/perl5"; export PERL_MM_OPT;
+
+
+# fast reload for st
+alias rel="xrdb merge ~/.local/opt/st/xresources && kill -USR1 $(pidof st)"

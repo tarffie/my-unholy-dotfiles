@@ -8,7 +8,7 @@
 
 #######################################
 #     set $mod key to <SUPER>         #
-#     it must be set on this file.    #
+#ajdasaasasqqq"q":""SUPER    it must be set on this file.    #
 #######################################
 set $mod Mod4
 
@@ -24,8 +24,6 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-exec --no-startup-id i3-msg '9; exec /usr/bin/thunderbird-bin'
-
 # default keyboard repeat is too slow for me
 exec xset r rate 140 40
 
@@ -36,22 +34,20 @@ gaps inner 10
 default_floating_border none
 default_border none
 
-#include colors.catppuccin-mocha
-#include colors.gruvbox-dark
-include colors.tarffie-bsd
+include colors.tarffie-lain 
+#include colors.tarffie-bsd
 
-# MUST HAVES 
+# MUST HAVES
 exec xset s off
 exec xset -dpms
 
-exec_always --no-startup-id feh --bg-scale ~/.wallpaper/gentoowpp.png
-#exec_always --no-startup-id ~/.config/polybar/launch.sh
-#exec_always --no-startup-id python ~/.config/polybar/i3-autoname-workspaces.py
+exec_always --no-startup-id feh --bg-scale ~/.wallpaper/wallhaven-marceline.png
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id python ~/.config/polybar/i3-autoname-workspaces.py
 
 exec_always --no-startup-id picom --experimental-backends
 
 font pango:Hack Nerd Font Regular 18
-
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -69,7 +65,7 @@ for_window [class="Blueman-manager"] floating enable
 for_window [title="galculator"] floating enable
 
 # start emacs at notes.org
-bindsym $mod+Shift+e exec emacsclient -r ~/notes/notes.org &
+bindsym $mod+Shift+e exec emacsclient -a "" -r ~/notes/notes.org &
 
 # start a terminal
 bindsym $mod+Return exec st -e tmux
@@ -87,16 +83,22 @@ bindsym $mod+Shift+d exec --no-startup-id rofi -monitor -1 -show window
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
-# printscreen bindings and stuff 
+# printscreen bindings and stuff
 ## Screenshots
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
-bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
-bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
+### current keyboard doesn't have a printscreen key ASKJLFKJLAFS
+bindsym Ctrl+Shift+p exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
+bindsym $mod+P exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
+bindsym $mod+S exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
+
+## for normal layout keyboards
+#bindsym Alt+Shift+Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
+#bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
+#bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
 
 ## Clipboard Screenshots
-bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
-bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+#bindsym Ctrl+Shift+P  exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym $mod+shift+P  exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym $mod+shift+S  exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 
 # vi keybindings
@@ -188,17 +190,17 @@ bindsym $mod+Shift+r restart
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-    bindsym $vi_left resize shrink width 2 px or 2 ppt
+  bindsym $vi_left resize shrink width 2 px or 2 ppt
     bindsym $vi_up resize grow height 2 px or 2 ppt
     bindsym $vi_down resize shrink height 2 px or 2 ppt
     bindsym $vi_right resize grow width 2 px or 2 ppt
-    # same bindings, but for the arrow keys
+# same bindings, but for the arrow keys
     bindsym Left resize shrink width 2 px or 2 ppt
     bindsym Down resize grow height 2 px or 2 ppt
     bindsym Up resize shrink height 2 px or 2 ppt
     bindsym Right resize grow width 2 px or 2 ppt
 
-    # back to normal: Enter or Escape
+# back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
     bindsym $mod+r mode "default"
@@ -208,12 +210,12 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-  font pango:Hack Nerd Font Regular 15
-  position top
-  status_command i3status
-  colors {
-    focused_workspace  #6c7086 #C74A46 #cdd6f4
-    active_workspace   #333333 #5f676a #ffffff
-  }
-}
+#bar {
+#  font pango:Hack Nerd Font Regular 15
+#  position top
+#  status_command i3status
+#  colors {
+#    focused_workspace  #6c7086 #C74A46 #cdd6f4
+#    active_workspace   #333333 #5f676a #ffffff
+#  }
+#}
