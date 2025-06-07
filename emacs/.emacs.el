@@ -46,12 +46,13 @@
 
 ;; https://raw.githubusercontent.com/stackmystack/doom-moonfly-theme/refs/heads/master/doom-moonfly-theme.el
 (rc/require 'doom-themes)
-(load-file "~/.emacs.d/doom-moonfly-theme.el")
-(load-theme 'doom-moonfly t)
+;;(load-file "~/.emacs.d/doom-moonfly-theme.el")
 
 ;; my favorite themes here so I can remember then later
+(load-theme 'doom-moonfly t)
 ;;(load-theme 'doom-challenger-deep t)
 ;;(load-theme 'doom-homage-black t)
+;;(load-theme 'doom-plain-dark t)
 
 ;; I might feel nostalgic later.
 ;;(setq-default catppuccin-flavor 'macchiato) ; or 'latte, 'macchiato, or 'mocha
@@ -62,12 +63,13 @@
                     :height 180
                     :weight 'normal
                     :width 'normal)
+(set-face-attribute 'region nil :background "#382487")
 
 (setq display-line-numbers-width 5)
 (global-hl-line-mode 1)
 
 (repeat-mode 1)
-(tab-bar-mode 1)
+(tab-bar-mode 0)
 (set-scroll-bar-mode nil)
 (setq-default cursor-type 'box)
 (setq-default blink-cursor-mode nil)
@@ -161,10 +163,6 @@ where as N is the active buffer number, which will be replaced"
 ;; prefer to use
 (prefer-coding-system 'utf-8-unix)
 
-;; Undo tree!
-(rc/require 'undo-tree)
-(add-hook 'prog-mode-hook #'undo-tree-mode)
-
 ;; I really love emacs copy paste except because it doesn't kill the region before yanking
 (defun paste-like-vim (beg end)
   "Receives region (as BEG and END), yank text to it and `'kill-region'`.
@@ -178,7 +176,6 @@ the vi text editor family yank-paste functionality."
         (yank)
         (kill-region beg end))
     (yank)))
-
 
 ;; whitespaces!
 (add-hook 'python-mode-hook #'whitespace-mode)
@@ -201,8 +198,6 @@ the vi text editor family yank-paste functionality."
 
 ;; the binding to stop minimizing emacs by accident
 (global-unset-key "\C-z")
-
-
 
 ;; i like my auto formating :(
 (rc/require 'format-all)
@@ -293,18 +288,24 @@ the vi text editor family yank-paste functionality."
 	            tab-width 2
               c-basic-offset tab-width
               java-ts-basic-offset tab-width
-              java-basic-offset tab-width)
+              java-basic-offset tab-width
+							rust-ts-mode-indent-offset tab-width)
 
+
+;; tarffie note here:
+;; ngl i have no idea what this does or why I put it here in the first place
+;; coding java in emacs was wild..
+;;; non sense section
 ;; ws-butler cleans up whitespace only on the lines you've edited,
 ;; keeping messy colleagues happy ;-) Important that it doesn't clean
 ;; the whitespace on currrent line, otherwise, eclim leaves messy
 ;; code behind.
-(rc/require 'ws-butler)
-(use-package ws-butler
-  :init
-  (setq ws-butler-keep-whitespace-before-point nil)
-  :config
-  (ws-butler-global-mode))
+																				;(rc/require 'ws-butler)
+																				;(use-package ws-butler
+																				;  :init
+																				;  (setq ws-butler-keep-whitespace-before-point nil)
+																				;  :config
+																				;  (ws-butler-global-mode))
 
 ;;;;;;;;;;;;;;;;
 ;; minibuffer ;;
@@ -319,7 +320,7 @@ the vi text editor family yank-paste functionality."
 (load "~/.emacs.d/modeline.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Pure text settings - by tkj
+;; Code editing, typing and text editing in general
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (add-hook 'text-mode-hook
@@ -372,6 +373,8 @@ the vi text editor family yank-paste functionality."
 (use-package expand-region
   :bind
   ("C-=" . 'er/expand-region))
+
+(global-set-key (kbd "C-c d s") 'eldoc-print-current-symbol-info)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ivy, counsel and swiper. Mostly minibuffer and navigation
@@ -635,16 +638,16 @@ the vi text editor family yank-paste functionality."
 
 (rc/require 'smartparens)
 
-;;(use-package smartparens
-;;  :ensure t
-;;  :demand t
-;;  :config
-;;  (require 'smartparens-config)
-;;  (smartparens-global-mode 1)
-;;  (setq-default show-smartparens-global-mode 1)
-;;  (sp-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
-;;  (sp-pair "[" nil :post-handlers '(("||\n[i]" "RET")))
-;;  (sp-pair "(" nil :post-handlers '(("||\n[i]" "RET"))))
+(use-package smartparens
+  :ensure t
+  :demand t
+  :config
+  (require 'smartparens-config)
+  (smartparens-global-mode 1)
+  (setq-default show-smartparens-global-mode 1)
+  (sp-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
+  (sp-pair "[" nil :post-handlers '(("||\n[i]" "RET")))
+  (sp-pair "(" nil :post-handlers '(("||\n[i]" "RET"))))
 
 ;;; dired
 (require 'dired-x)
@@ -663,6 +666,8 @@ the vi text editor family yank-paste functionality."
 (global-set-key (kbd "C-c h r") 'helm-recentf)
 
 ;;; harpoon
+(rc/require 'harpoon 'hydra)
+ 
 (global-set-key (kbd "C-c SPC") 'harpoon-quick-menu-hydra)
 (global-set-key (kbd "C-c a") 'harpoon-add-file)
 (global-set-key (kbd "C-c h e") 'harpoon-toggle-quick-menu)
@@ -700,13 +705,13 @@ the vi text editor family yank-paste functionality."
 (setq-default geiser-guile-binary "/usr/bin/guile-3.0")
 (load "~/.emacs.d/tarffie-lisp.el")
 
-(add-hook 'rust-mode-hook 'eglot-ensure)
 (add-hook 'lean4-mode-hook 'smartparens-mode)
 
+;; Rust programming language
+(load "~/.emacs.d/tarffie-rust.el")
 
-(add-to-list 'eglot-server-programs
-             '((rust-ts-mode rust-mode) .
-               ("rust-analyzer" :initializationOptions (:check (:command "clippy")))))
+;; Magit
+(rc/require 'magit)
 
 (provide '.emacs)
 ;;; .emacs.el ends here
