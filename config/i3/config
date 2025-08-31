@@ -16,7 +16,10 @@ set $mod Mod4
 #     KEYBINDINGS & BINDINGS    #
 #################################
 floating_modifier $mod
+
+## trying to put those at my xinitrc
 exec xmodmap ~/.Xmodmap
+exec pactl set-default-sink 7
 
 # control audio through kbd
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -34,18 +37,23 @@ gaps inner 10
 default_floating_border none
 default_border none
 
-include colors.tarffie-lain 
-#include colors.tarffie-bsd
+#include colors.tarffie-lain
+include colors.tarffie-bsd
 
 # MUST HAVES
 exec xset s off
 exec xset -dpms
 
-exec_always --no-startup-id feh --bg-scale ~/.wallpaper/wallhaven-marceline.png
+# Display settings
+exec_always --no-startup-id xrandr --output DP-1 --mode 1920x1080 --rate 144
+exec_always --no-startup-id xrandr --output DP-2 --mode 1920x1080 --rate 144 --rotate left
+
+exec_always --no-startup-id picom 
+exec_always --no-startup-id sh ~/personal/my-unholy-dotfiles/scripts/launch-wallpaper.sh
+
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id python ~/.config/polybar/i3-autoname-workspaces.py
 
-exec_always --no-startup-id picom --experimental-backends
 
 font pango:Hack Nerd Font Regular 18
 
@@ -62,19 +70,21 @@ for_window [class="^Telegram"] floating enable
 for_window [class="^Discord"] floating enable
 for_window [class="^kitty"] floating enable
 for_window [class="Blueman-manager"] floating enable
+for_window [class="Xfce4-appfinder"] floating enable
 for_window [title="galculator"] floating enable
 
 # start emacs at notes.org
 bindsym $mod+Shift+e exec emacsclient -a "" -r ~/notes/notes.org &
 
 # start a terminal
-bindsym $mod+Return exec st -e tmux
+bindsym $mod+Return exec alacritty -e tmux
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # A more modern dmenu replacement is ro# start rofi (program launcher)
-bindsym $mod+d exec --no-startup-id rofi -monitor -1 -show drun
+#bindsym $mod+d exec --no-startup-id rofi -monitor -1 -show drun
+bindsym $mod+d exec --no-startup-id xfce4-appfinder
 # start rofi (window switcher)
 bindsym $mod+Shift+d exec --no-startup-id rofi -monitor -1 -show window
 
@@ -86,9 +96,10 @@ bindsym $mod+Shift+d exec --no-startup-id rofi -monitor -1 -show window
 # printscreen bindings and stuff
 ## Screenshots
 ### current keyboard doesn't have a printscreen key ASKJLFKJLAFS
-bindsym Ctrl+Shift+p exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
-bindsym $mod+P exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
-bindsym $mod+S exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
+#bindsym Ctrl+Shift+p exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
+#bindsym $mod+P exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
+#bindsym $mod+S exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
+bindsym $mod+S exec --no-startup-id sh $HOME/personal/my-unholy-dotfiles/take-screenshot.sh
 
 ## for normal layout keyboards
 #bindsym Alt+Shift+Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
@@ -210,12 +221,12 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-#bar {
-#  font pango:Hack Nerd Font Regular 15
-#  position top
-#  status_command i3status
-#  colors {
-#    focused_workspace  #6c7086 #C74A46 #cdd6f4
-#    active_workspace   #333333 #5f676a #ffffff
-#  }
-#}
+# bar {
+#   font pango:Hack Nerd Font Regular 15
+#   position bottom
+#   status_command i3status
+#   colors {
+#     focused_workspace  #6c7086 #C74A46 #cdd6f4
+#     active_workspace   #333333 #5f676a #ffffff
+#   }
+# }

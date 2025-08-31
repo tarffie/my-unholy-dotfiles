@@ -10,7 +10,6 @@
 ;;;;;;;;;;;;;;;;;;;;;
 
 ;; repositories
-(package-initialize)
 (require 'package)
 (setq package-archives '(("melpa" . "http://melpa.org/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")))
@@ -33,39 +32,40 @@
 ;; reading and writing files, also backups
 (load "~/.emacs.d/tarffie-files.el")
 
-(rc/require 'exec-path-from-shell)
-
-(use-package exec-path-from-shell
-  :ensure  t
-  :config
-  (exec-path-from-shell-initialize))
+;; (rc/require 'exec-path-from-shell)
+;; (use-package exec-path-from-shell
+;;   :ensure  t
+;;   :config
+;;   (exec-path-from-shell-initialize))
 
 ;;;;;;;;;;;;;;;;;
 ;;  apparence  ;;
 ;;;;;;;;;;;;;;;;;
-
+(load-file "~/.emacs.d/tarffienation-theme.el")
+(load-theme 'tarffienation t)
 ;; https://raw.githubusercontent.com/stackmystack/doom-moonfly-theme/refs/heads/master/doom-moonfly-theme.el
-(rc/require 'doom-themes)
+;;(rc/require 'doom-themes)
 ;;(load-file "~/.emacs.d/doom-moonfly-theme.el")
 
 ;; my favorite themes here so I can remember then later
-(load-theme 'doom-moonfly t)
+;;(load-theme 'doom-moonfly t)
 ;;(load-theme 'doom-challenger-deep t)
 ;;(load-theme 'doom-homage-black t)
 ;;(load-theme 'doom-plain-dark t)
+;;(load-theme 'doom-flatwhite t)
 
 ;; I might feel nostalgic later.
-;;(setq-default catppuccin-flavor 'macchiato) ; or 'latte, 'macchiato, or 'mocha
 ;;(rc/require-theme 'catppuccin)
+;;(setq-default catppuccin-flavor 'macchiato) ; or 'latte, 'macchiato, or 'mocha
 
 (set-face-attribute 'default nil
-                    :family "CaskaydiaCove Nerd Font Mono"
+                    :family "Comic Shanns Mono Nerd Font Mono"
                     :height 180
                     :weight 'normal
                     :width 'normal)
 (set-face-attribute 'region nil :background "#382487")
 
-(setq display-line-numbers-width 5)
+(setq display-line-numbers-width 2)
 (global-hl-line-mode 1)
 
 (repeat-mode 1)
@@ -93,7 +93,7 @@
       column-number-mode t
       frame-title-format (concat invocation-name "@" (system-name) "{%f}")
       ;; no visible or audible bells, please
-      visible-bell 1
+      visible-bell t
       ring-bell-function (lambda nil (message "")))
 
 ;;;;;;;;;;;;;;;;;
@@ -209,7 +209,9 @@ the vi text editor family yank-paste functionality."
     (format-all-ensure-formatter)
     (cond
      ((or (derived-mode-p 'java-mode) (derived-mode-p 'java-ts-mode))
-      (1eglot-format-buffer))
+      (eglot-format-buffer))
+     ((or (derived-mode-p 'php-mode) (derived-mode-p 'php-ts-mode))
+      (lsp-format-buffer))
      ((derived-mode-p 'prolog-mode)
       (prolog-indent-buffer))
      (t
@@ -323,10 +325,10 @@ the vi text editor family yank-paste functionality."
 ;; Code editing, typing and text editing in general
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-hook 'text-mode-hook
-          #'(lambda ()
-              (flyspell-mode)
-              (auto-fill-mode 1)))
+;; (add-hook 'text-mode-hook
+;;           #'(lambda ()
+;;               (flyspell-mode)
+;;               (auto-fill-mode 1)))
 (setq-default longlines-show-hard-newlines t)
 
 
@@ -434,18 +436,6 @@ the vi text editor family yank-paste functionality."
 ;;                                  ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; auto-complete
-
-
-
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode)
-  :bind (:map flycheck-mode-map
-              ("M-n" . flycheck-next-error) ; optional but recommended error navigation
-              ("M-p" . flycheck-previous-error)))
-
-
 ;; CSS mode
 
 (load "~/.emacs.d/tarffie-css.el")
@@ -460,7 +450,7 @@ the vi text editor family yank-paste functionality."
 ;;;;;;;;;;;;;;
 ;; Markdown ;;
 ;;;;;;;;;;;;;;
-
+(rc/require 'markdown-ts-mode 'markdownfmt)
 (add-hook 'markdown-mode-hook 'flyspell-mode)
 
 ;;;;;;;;;;;;;;;;
@@ -490,7 +480,7 @@ the vi text editor family yank-paste functionality."
 ;; Web browser ;;
 ;;;;;;;;;;;;;;;;;
 
-(setq browse-url-generic-program "zen"
+(setq browse-url-generic-program "chrome"
       browse-url-browser-function 'browse-url-generic)
 
 ;;;;;;;;;;;;;;;;;;;;;
@@ -667,7 +657,7 @@ the vi text editor family yank-paste functionality."
 
 ;;; harpoon
 (rc/require 'harpoon 'hydra)
- 
+
 (global-set-key (kbd "C-c SPC") 'harpoon-quick-menu-hydra)
 (global-set-key (kbd "C-c a") 'harpoon-add-file)
 (global-set-key (kbd "C-c h e") 'harpoon-toggle-quick-menu)
@@ -684,11 +674,12 @@ the vi text editor family yank-paste functionality."
 
 ;; ocaml??
 (load "~/.emacs.d/ocaml.el")
+(load "~/.emacs.d/opam-user-setup.el")
 
 ;; Presence.el because I like discord interaction
 ;; https://github.com/richardhbtz/emacs-rpc
-(rc/require 'elcord)
-(elcord-mode)
+;; (rc/require 'elcord)
+;; (elcord-mode)
 
 ;; ultra-scroll
 ;;
@@ -700,18 +691,19 @@ the vi text editor family yank-paste functionality."
   :config
   (pixel-scroll-precision-mode t))
 
-(rc/require 'pdf-tools)
-
-(setq-default geiser-guile-binary "/usr/bin/guile-3.0")
-(load "~/.emacs.d/tarffie-lisp.el")
+;;(load "~/.emacs.d/tarffie-lisp.el")
 
 (add-hook 'lean4-mode-hook 'smartparens-mode)
 
 ;; Rust programming language
-(load "~/.emacs.d/tarffie-rust.el")
+;; (load "~/.emacs.d/tarffie-rust.el")
 
 ;; Magit
 (rc/require 'magit)
+
+;; C programming language lsp
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'eglot-ensure)
 
 (provide '.emacs)
 ;;; .emacs.el ends here

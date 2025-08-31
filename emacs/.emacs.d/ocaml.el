@@ -11,7 +11,9 @@
 
 ;;; Code:
 
-(require 'tuareg)
+
+
+(rc/require 'tuareg)
 (setq-default tuareg-match-pattern-aligned t)
 
 (custom-set-variables
@@ -56,6 +58,7 @@
            2 3 (5 . 6) (9 . 11) 1 (8 compilation-message-face)))))
 
 (add-hook 'tuareg-mode-hook 'set-ocaml-error-regexp)
+(add-hook 'tuareg-mode-hook 'eglot)
 (add-hook 'caml-mode-hook 'set-ocaml-error-regexp)
 ;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
 (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")

@@ -3,6 +3,8 @@
 ;;; Tarffie custom configuration for LISP
 ;;; Code:
 
+(setq-default geiser-guile-binary "/usr/bin/guile-3.0")
+
 (use-package geiser
   :after
   (scheme-mode)

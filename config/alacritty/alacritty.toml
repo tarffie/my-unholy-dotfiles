@@ -1,0 +1,8 @@
+[general]
+import = [
+  "~/.config/alacritty/themes/themes/xterm.toml"
+]
+
+[env]
+TERM = "rxvt-256color"
+

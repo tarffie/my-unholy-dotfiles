@@ -1,6 +1,13 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+# Enable the subsequent settings only in interactive sessions
+case $- in
+  *i*) ;;
+  *) return;;
+esac
+
+
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -8,7 +15,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="theunraveler"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -70,7 +77,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(tmux emacs docker docker-compose fzf mvn)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -103,36 +110,81 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# aliases for pacman 
-#alias look="pacman -Ss" 
+# aliases for pacman
+#alias look="pacman -Ss"
 #alias add="sudo pacman -S"
 #alias update="sudo pacman -Syu && yay -Syu"
 #alias remove="sudo pacman -Rs"
 
+# Automatically start TMUX, if it's not set
+# I got that from a dude on a comment section of this video ~>
+# https://www.youtube.com/watch?v=cPWEX2446B4
+if [[ ! -z ZSH_TMUX_AUTOSTART ]]; then
+  export ZSH_TMUX_AUTOSTART=true
+fi
 
-# aliases for pacman 
-alias look="emerge -S" 
-alias fetch="sudo emerge -av1"
-alias update="sudo emerge --ask --verbose --deep --newuse @world"
-alias remove-check="emerge -vp --depclean"
-alias remove="sudo emerge --unmerge"
+if [[ ! -z ZSH_TMUX_FIXTERM_WITH_256COLOR ]]; then
+  ZSH_TMUX_FIXTERM_WITH_256COLOR=true
+fi
 
-# aliases for gitting >:D 
-alias gi="git init"
-alias gs="git status"
-alias gf="git fetch"
-alias ga="git add"
-alias gpp="git pull"
-alias gp="git push"
-alias gc="git commit -m"
-alias gd="git diff "
+#
+# Set up fzf key bindings and fuzzy completion
+#
+eval "$(fzf --zsh)"
 
-# alias for other software 
+## Colorize the ls output ##
+alias ls='ls --color=auto'
+
+## Use a long listing format ##
+alias ll='ls -la'
+
+## Show hidden files ##
+alias l.='ls -d .* --color=auto'
+
+## get rid of command not found ##
+alias cd..='cd ..'
+
+## a quick way to get out of current directory ##
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../..'
+
+alias mkdir='mkdir -pv'
+
+#alias reboot="sudo reboot"
+#alias poweroff="sudo poweroff"
+
+if [ $UID -ne 0 ]; then
+  # for more civilized times..miss you, gentoo
+  # alias look="emerge -S"
+  # alias fetch="sudo emerge -av1"
+  # alias update="sudo emerge --ask --verbose --deep --newuse @world"
+  # alias remove-check="emerge -vp --depclean"
+  # alias remove="sudo emerge --unmerge"
+  # alias sync="sudo emerge --sync"
+  #
+  # aliases for gitting >:D
+  #
+  alias gs="git status"
+  alias gf="git fetch"
+  alias ga="git add"
+  alias gpp="git pull"
+  alias gp="git push"
+  alias gc="git commit -m"
+  alias gd="git diff"
+  alias gcl="git clone"
+  alias pa="php artisan"
+
+  alias pn="pnpm"
+  alias lf="ranger"
+  alias ff="fastfetch"
+fi
 
 # Created by `pipx` on 2024-07-08 13:47:10
 export PATH="$PATH:/home/tarffie/.local/bin"
-
-#[ -f "/home/maria/.ghcup/env" ] && . "/home/maria/.ghcup/env" # ghcup-env
 
 # pnpm
 export PNPM_HOME="/home/tarffie/.local/share/pnpm"
@@ -141,3 +193,31 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#[ -s "/home/tarffie/.jabba/jabba.sh" ] && source "/home/tarffie/.jabba/jabba.sh"
+
+#export PATH="/home/tarffie/.config/herd-lite/bin:$PATH"
+#export PHP_INI_SCAN_DIR="/home/tarffie/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+
+# bun
+#export BUN_INSTALL="$HOME/.bun"
+#export PATH="$BUN_INSTALL/bin:$PATH"
+
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Slackware heavily needed those
+#PATH="/home/lain/perl5/bin${PATH:+:${PATH}}"; export PATH;
+#PERL5LIB="/home/lain/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+#PERL_LOCAL_LIB_ROOT="/home/lain/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+#PERL_MB_OPT="--install_base \"/home/lain/perl5\""; export PERL_MB_OPT;
+#PERL_MM_OPT="INSTALL_BASE=/home/lain/perl5"; export PERL_MM_OPT;
+
+
+# fast reload for st
+#alias rel="xrdb merge ~/.local/opt/st/xresources && kill -USR1 $(pidof st)"
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/local/share/zsh-you-should-use/you-should-use.plugin.zsh

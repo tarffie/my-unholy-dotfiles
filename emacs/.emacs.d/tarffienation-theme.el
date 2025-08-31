@@ -3,13 +3,13 @@
 
 (custom-theme-set-faces
  'tarffienation
- '(cursor ((t (:background "#704B4B"))))
+ '(cursor ((t (:background "firebrick4"))))
  '(fixed-pitch ((t (:family "Monospace"))))
  '(variable-pitch ((((type w32)) (:foundry "outline" :family "Arial")) (t (:family "Sans Serif"))))
  '(escape-glyph ((t (:foreground "red"))))
  '(homoglyph ((t (:foreground "red2"))))
  '(minibuffer-prompt ((t (:foreground "dark red"))))
- '(highlight ((t (:background "darkred" :foreground "white smoke"))))
+ '(highlight ((t (:background "dim gray" :foreground "white smoke"))))
  '(region ((t (:extend t :background "dark red"))))
  '(shadow ((t (:foreground "#5B6268"))))
  '(secondary-selection ((t (:extend t :background "#1B2229"))))
