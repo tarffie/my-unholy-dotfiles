@@ -1,3 +1,6 @@
+# THIS IS DEPRECATED
+for new dotfiles and new configs, new [dotfiles are here](https://codeberg.org/tarffie/Tarfferia/)
+
 # Dotfiles for my current setup
 ## Current Setup
 - ComicShanns and Hack Nerd 
